@@ -16,7 +16,8 @@ import fs from 'fs';
                 resource_type: 'auto',
             });
             // file has been uploaded successfull
-            console.log('Cloudinary upload result:', response.url);
+            // console.log('Cloudinary upload result:', response.url);
+            fs.unlinkSync(localFilePath); // remove the locallu saved temporary file
             return response;
         }
         catch (error) {
