@@ -50,10 +50,17 @@ const userSchema = new Schema(
 );
 
 userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
+  if (!this.isModified("password")) return ;
   
     this.password = await bcrypt.hash(this.password, 10);
 
+    // next();
+
+});
+
+userSchema.methods.isPasswordCorrect = async function(password){
+    return await bcrypt.compare(password, this.password)
+}
     // next();  beacause we are returning from the function after hashing password and no need to call next() explicitly and move to the next middleware and saving the user and all another operations will be handled after this line. and if we call next() here then it will call next() twice which will lead to error. and if password is not modified then we are calling next() to move to the next middleware. and if password is modified then we are hashing the password and returning from the function. and not calling next() explicitly.
 
 userSchema.methods.generateAccessToken = function () {
@@ -81,4 +88,6 @@ userSchema.methods.generateRefreshToken = function () {
     }
   );
 };
+
+
 export const User = mongoose.model("User", userSchema);
