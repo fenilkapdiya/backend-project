@@ -305,7 +305,7 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, user, "Acount details upadate successfully"));
 });
 
-const upadateUserAvatar = asyncHandler(async (req, res) => {
+const updateUserAvatar = asyncHandler(async (req, res) => {
   const avatarLoacalPath = req.file?.path;
 
   if (!avatarLoacalPath) {
@@ -335,7 +335,7 @@ const upadateUserAvatar = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, user, "Avatar upadate successfully"));
 });
 
-const upadateUserCoverImage = asyncHandler(async (req, res) => {
+const updateUserCoverImage = asyncHandler(async (req, res) => {
   const coverImageLoacalPath = req.file?.path;
 
   if (!coverImageLoacalPath) {
@@ -496,8 +496,8 @@ export {
   changeCurrentPassword,
   getCurrentUser,
   updateAccountDetails,
-  upadateUserAvatar,
-  upadateUserCoverImage,
+  updateUserAvatar,
+  updateUserCoverImage,
   getUserChannelProfile,
   getWatchHistory,
 };
